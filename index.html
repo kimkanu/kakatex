@@ -1,0 +1,225 @@
+<!doctype html>
+
+<link rel="stylesheet" href="styles/index.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y"
+  crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/katex.min.js" integrity="sha384-K3vbOmF2BtaVai+Qk37uypf7VrgBubhQreNQe9aGsz9lB63dIFiQVlJbr92dw2Lx"
+  crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/contrib/auto-render.min.js" integrity="sha384-kmZOZB5ObwgQnS/DuDg6TScgOiWWBiVt0plIRkZCmE6rDZGrEOQeHM5PcHi+nyqe"
+  crossorigin="anonymous"></script>
+<script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
+<script src="javascripts/ace/ace.js"></script>
+<script src="javascripts/dom-to-image.js"></script>
+
+<div id="logo"><svg version="1.1" width="12em" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+  viewBox="0 0 700 197.7" style="enable-background:new 0 0 700 197.7;" xml:space="preserve">
+<style type="text/css">
+  .st0 {
+    fill: #333;
+  }
+  .dark .st0 {
+    fill: #FFEB00;
+  }
+</style>
+<g>
+ <path class="st0" d="M84.3,146.8H71c-1.5,0-2.7-0.5-3.8-1.7L19.2,86.6v56.8c0,1.7-1.2,3.4-3.1,3.4H6.7c-1.7,0-3.1-1.5-3.1-3.4V23.3
+   C3.7,21.6,5,20,6.9,20h9c1.7,0,3.2,1.4,3.2,3.2v55.1l49.1-56.8c1-1,1.7-1.5,3.4-1.5H84c1.7,0,2.4,0.8,2.4,1.9
+   c0,0.5-0.2,1.2-0.7,1.7l-51.3,58L85.7,143c0.5,0.5,0.9,1.4,0.9,2C86.6,145.9,85.9,146.8,84.3,146.8z"/>
+ <path class="st0" d="M158.9,146.8H151c-1.9,0-3.4-1.5-3.4-3.4v-3.8c-8.2,4.8-16.7,8.4-26.3,8.4c-14.5,0-27.8-6.3-27.8-27.6v-2
+   c0-18.4,10.7-27.6,41.1-27.6h12.6v-6.8c0-14.3-4.9-19.3-18.3-19.3c-11.1,0-19.3,0.7-26.1,1.4c-0.3,0-0.5,0-0.9,0
+   c-1.5,0-3.1-0.5-3.1-2.7v-6c0-1.9,1.2-2.9,3.6-3.2c7-1.2,14.8-2.2,26.4-2.2c23.7,0,33.3,11.9,33.3,32.1v59.5
+   C162.3,145.2,160.8,146.8,158.9,146.8z M147.3,101.4h-12.6c-20.6,0-26.1,4.6-26.1,16.7v2c0,12.3,5.8,15.5,15.7,15.5
+   c7.8,0,14.8-2.4,23-6.8V101.4z"/>
+ <path class="st0" d="M247.2,146.8h-12.3c-1.9,0-2.6-0.5-3.9-2.2l-33.9-42v40.8c0,1.9-1.5,3.4-3.4,3.4h-8.2c-1.9,0-3.4-1.5-3.4-3.4
+   V21.9c0-1.9,1.5-3.4,3.4-3.4h8.2c1.9,0,3.4,1.5,3.4,3.4v70.9l34.1-38.4c1-1.2,1.7-1.5,3.4-1.5h11.9c1.7,0,2.6,0.9,2.6,1.9
+   c0,0.7-0.3,1.4-0.9,1.9l-37.5,40.6l37.9,45.7c0.3,0.3,0.5,1,0.5,1.5C249.1,145.7,248.4,146.8,247.2,146.8z"/>
+ <path class="st0" d="M325.1,146.8h-7.8c-1.9,0-3.4-1.5-3.4-3.4v-3.8c-8.2,4.8-16.7,8.4-26.3,8.4c-14.5,0-27.8-6.3-27.8-27.6v-2
+   c0-18.4,10.7-27.6,41.1-27.6h12.6v-6.8c0-14.3-4.9-19.3-18.3-19.3c-11.1,0-19.3,0.7-26.1,1.4c-0.3,0-0.5,0-0.9,0
+   c-1.5,0-3.1-0.5-3.1-2.7v-6c0-1.9,1.2-2.9,3.6-3.2c7-1.2,14.8-2.2,26.4-2.2c23.7,0,33.3,11.9,33.3,32.1v59.5
+   C328.6,145.2,327,146.8,325.1,146.8z M313.5,101.4h-12.6c-20.6,0-26.1,4.6-26.1,16.7v2c0,12.3,5.8,15.5,15.7,15.5
+   c7.8,0,14.8-2.4,23-6.8V101.4z"/>
+ <g>
+   <path class="st0" d="M462,1.2H336.9l-3.7,47.9h3.9c2.8-35.9,5.9-42.2,39.5-42.2c3.9,0,10.2,0,12,0c4.1,0.6,4.1,3.3,4.1,8.3v117.9
+     c0,7.8-0.7,10.2-18.9,10.2h-6.1v5.2c10.4-0.2,21.2-0.4,31.8-0.4c10.6,0,21.5,0.2,31.8,0.4v-5.2h-6c-18,0-18.6-2.4-18.6-10.2V15.2
+     c0-4.8,0-7.4,3.9-8.3h11.9c33.1,0,36.4,6.2,39.2,42.2h3.9"/>
+   <path class="st0" d="M570.6,141h-3.9c-4.7,32.1-7.5,49.6-45.6,49.6H491c-8.7,0-9.1-1.1-9.1-8.5v-60.5h20.4
+     c20.4,0,22.4,7.5,22.4,25.8h3.5V90.9h-3.5c0,18-2,25.3-22.4,25.3H482V62.5c0-7.3,0.4-8.4,9.1-8.4h29.6c33.5,0,37.4,13.3,40.5,42
+     h3.9l-5.2-47.9H450.1v5.9c15.3,0,17.8,0,17.8,9.7v116.9c0,9.7-2.4,9.7-17.8,9.7v5.2h112.7"/>
+   <path class="st0" d="M629,66.5l32-46.3c3.2-4.5,9.7-13.9,27.5-14.1V0.8c-5,0.4-13.2,0.4-18.4,0.4c-7.1,0-16,0-21.4-0.4v5.2
+     c6.9,0.6,8.6,5,8.6,8.5c0,2.6-1.1,4.3-2.6,6.5l-28.6,41.5l-32-46.9c-1.5-2.4-1.7-3-1.7-3.7c0-2,2.4-5.6,9.5-5.8V0.8
+     c-6.9,0.4-17.5,0.4-24.7,0.4c-5.6,0-16.4,0-21.7-0.4v5.2c11.9,0,15.8,0.4,20.6,7.2L618,74.6l-37.7,55
+     c-9.3,13.5-23.4,13.7-27.5,13.7v5.2c4.9-0.4,13.2-0.4,18.4-0.4c5.8,0,16,0,21.4,0.4v-5.2c-6.7-0.6-8.6-5-8.6-8.5
+     c0-2.8,1.1-4.3,2.2-5.9l34.6-50.6l37.7,55.4c1.7,2.4,1.7,3,1.7,3.7c0,1.7-1.9,5.4-9.5,5.9v5.2c6.9-0.4,17.5-0.4,24.7-0.4
+     c5.6,0,16.4,0,21.7,0.4v-5.2c-13.9,0-16.1-1.1-20.4-7.2"/>
+ </g>
+</g>
+</svg>
+</div>
+<div id="editor"></div>
+<div class="resizable">
+  <div class="resizers">
+    <div id="contents"></div>
+    <div class="resizer bottom-left"></div>
+    <div class="resizer bottom-right"></div>
+  </div>
+</div>
+<div id="bottom-div">
+  <a href="javascript:toggleDark();"><svg id="moon" height="4em" width='4em' xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 100 100" enable-background="new 0 0 100 100" xml:space="preserve"><path id="moon-path" fill="#000000" d="M75.075,64.591c-21.906,0-39.666-17.759-39.666-39.667c0-4.712,0.826-9.231,2.333-13.424  C22.442,17.003,11.5,31.638,11.5,48.833C11.5,70.741,29.259,88.5,51.167,88.5c17.195,0,31.83-10.942,37.333-26.242  C84.307,63.765,79.789,64.591,75.075,64.591z"></path></svg></a>
+  <a id="kakao-link-btn" href="javascript:renderToImage();">
+    <img src="//developers.kakao.com/assets/img/about/logos/kakaolink/kakaolink_btn_medium.png">
+    <div id="loading" class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
+  </a>
+</div>
+
+<script src="javascripts/resizable.js"></script>
+
+<script>
+  function addLineBreaks(paragraph) {
+    const find = (input, re, replacer) => {
+      let match = null;
+      const array = [];
+
+      while ((match = re.exec(input)) !== null) {
+        array.push([match.index, match[0], replacer(match)]);
+      }
+
+      return array;
+    }
+
+    const texts = (paragraph, matcher, replacer) => find(paragraph, RegExp(`(\\\\${matcher}\\{((([^\\}\\$]|\\\\\\$)|\\\\\\})*)((?<!\\\\)\\}))|(\\\\${matcher}\\s*([^\\s\\$\\\\\\{]))|(\\\\${matcher}\\s*((\\\\\\$)|(\\\\\\~)|(\\\\textbackslash)))`, 'gim'), (match) => replacer(match[2] || match[6] || match[8] || ''));
+
+    const pars = find(paragraph, /\n\n+/gim, () => '</p><p>');
+    const lineBreaks = find(paragraph, /\\\\/gim, () => '<br>');
+    const textbfs = texts(paragraph, 'textbf', (str) => `<b>${str}</b>`);
+    const textits = texts(paragraph, 'textit', (str) => `<i>${str}</i>`);
+    const sections = texts(paragraph, 'section', (str) => `<h2>${str}</h2>`);
+
+    const findFormulae = (input) => {
+      let match = null;
+      const re = /(\\\((.|\n)*?\\\))|(\\\[(.|\n)*?\\\])|(\$(.|\n)*?\$)/gim;
+      const array = [];
+
+      while ((match = re.exec(input)) !== null) {
+        array.push([match.index, match[0].length + match.index]);
+      }
+
+      return array;
+    };
+
+    const formulae = findFormulae(paragraph);
+    const concated = pars.concat(lineBreaks, textbfs, textits, sections);
+    concated.sort((a, b) => (a[0] < b[0] ? -1 : 1));
+    const validPars = concated.filter(([pos, match, sub]) =>
+      !(formulae.find(([start, end]) => (pos >= start && pos < end))));
+
+    let modifiedParagraph = paragraph;
+    let shift = 0;
+    validPars.forEach(([pos, match, sub], i) => {
+      modifiedParagraph = `${modifiedParagraph.slice(0, pos + shift)}${sub}${modifiedParagraph.slice(pos + shift + match.length)}`;
+      shift += sub.length - match.length;
+    });
+
+    return `<p>${modifiedParagraph}</p>`;
+  }
+</script>
+
+<script>
+  const editorDiv = document.querySelector('#editor');
+  const editor = ace.edit('editor');
+  editor.setTheme('ace/theme/tomorrow');
+  editor.session.setMode('ace/mode/latex');
+  editor.setFontSize(16);
+  editor.container.style.lineHeight = 1.5;
+  editor.renderer.updateFontSize();
+  editor.setOptions({
+    wrap: true,
+  });
+  const contents = document.querySelector('#contents');
+  editor.on('change', function (e) {
+    const value = editor.getValue();
+    try {
+      contents.innerHTML = addLineBreaks(value.replace('<', '&lt;').replace('>', '&gt;'));
+      renderMathInElement(contents, {
+        delimiters: [
+          { left: '$$', right: '$$', display: true },
+          { left: '$', right: '$', display: false },
+          { left: '\\(', right: '\\)', display: false },
+          { left: '\\[', right: '\\]', display: true },
+        ],
+        throwOnError: false,
+        strict: 'ignore'
+      });
+      contents.innerHTML = contents.innerHTML.replace(/\\\$/g, '$');
+    } catch (e) {
+      console.error(e);
+    }
+  });
+</script>
+
+<script>
+  let executing = false;
+
+  async function renderToImage() {
+    if (executing) return;
+
+    executing = true;
+    document.getElementById('kakao-link-btn').classList.add('exec');
+    const resizers = document.querySelector('.resizers');
+    const base64Image = (await domtoimage.toPng(resizers)).slice(22);
+
+    const formData = new FormData();
+    formData.append('image', base64Image);
+    const xhr = new XMLHttpRequest();
+    xhr.open('POST', 'https://api.imgur.com/3/image.json');
+    xhr.onload = () => {
+      const { link } = JSON.parse(xhr.responseText).data;
+      sendLink(link);
+    }
+    xhr.setRequestHeader('Authorization', 'Client-ID 7e06dc2fe0a78bb');
+    xhr.send(formData);
+  }
+
+  //<![CDATA[
+  // // 사용할 앱의 JavaScript 키를 설정해 주세요.
+  Kakao.init('034571a3977ef37e7fe58a5ac340e38c');
+  // // 카카오링크 버튼을 생성합니다. 처음 한번만 호출하면 됩니다.
+  function sendLink(imageUrl) {
+    Kakao.Link.sendDefault({
+      objectType: 'feed',
+      content: {
+        title: '',
+        description: '',
+        imageUrl,
+        link: {
+          mobileWebUrl: imageUrl,
+          webUrl: imageUrl
+        }
+      },
+      buttons: [
+        {
+          title: '자세히 보기',
+          link: {
+            mobileWebUrl: imageUrl,
+            webUrl: imageUrl
+          }
+        }
+      ]
+    });
+    executing = false;
+    document.getElementById('kakao-link-btn').classList.remove('exec');
+  }
+  //]]>
+</script>
+
+<script>
+function toggleDark() {
+  if (document.body.classList.contains('dark')) {
+    document.body.classList.remove('dark');
+    editor.setTheme('ace/theme/tomorrow');
+  }
+  else {
+    document.body.classList.add('dark');
+    editor.setTheme('ace/theme/tomorrow_night_eighties');
+  }
+}
+</script>
