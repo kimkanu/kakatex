@@ -1,50 +1,50 @@
 @font-face {
 	font-family: 'Noto Serif KR';
 	src: local(※),
-	url('/fonts/NotoSerifKR-ExtraLight.woff') format('woff'),
-	url('/fonts/NotoSerifKR-ExtraLight.otf') format('opentype');
+	url('fonts/NotoSerifKR-ExtraLight.woff') format('woff'),
+	url('fonts/NotoSerifKR-ExtraLight.otf') format('opentype');
   font-weight: 200;
 }
 @font-face {
 	font-family: 'Noto Serif KR';
 	src: local(※),
-	url('/fonts/NotoSerifKR-Light.woff') format('woff'),
-	url('/fonts/NotoSerifKR-Light.otf') format('opentype');
+	url('fonts/NotoSerifKR-Light.woff') format('woff'),
+	url('fonts/NotoSerifKR-Light.otf') format('opentype');
   font-weight: 300;
 }
 @font-face {
 	font-family: 'Noto Serif KR';
 	src: local(※),
-	url('/fonts/NotoSerifKR-Regular.woff') format('woff'),
-	url('/fonts/NotoSerifKR-Regular.otf') format('opentype');
+	url('fonts/NotoSerifKR-Regular.woff') format('woff'),
+	url('fonts/NotoSerifKR-Regular.otf') format('opentype');
   font-weight: 400;
 }
 @font-face {
 	font-family: 'Noto Serif KR';
 	src: local(※),
-	url('/fonts/NotoSerifKR-Medium.woff') format('woff'),
-	url('/fonts/NotoSerifKR-Medium.otf') format('opentype');
+	url('fonts/NotoSerifKR-Medium.woff') format('woff'),
+	url('fonts/NotoSerifKR-Medium.otf') format('opentype');
   font-weight: 500;
 }
 @font-face {
 	font-family: 'Noto Serif KR';
 	src: local(※),
-	url('/fonts/NotoSerifKR-SemiBold.woff') format('woff'),
-	url('/fonts/NotoSerifKR-SemiBold.otf') format('opentype');
+	url('fonts/NotoSerifKR-SemiBold.woff') format('woff'),
+	url('fonts/NotoSerifKR-SemiBold.otf') format('opentype');
   font-weight: 600;
 }
 @font-face {
 	font-family: 'Noto Serif KR';
 	src: local(※),
-	url('/fonts/NotoSerifKR-Bold.woff') format('woff'),
-	url('/fonts/NotoSerifKR-Bold.otf') format('opentype');
+	url('fonts/NotoSerifKR-Bold.woff') format('woff'),
+	url('fonts/NotoSerifKR-Bold.otf') format('opentype');
   font-weight: 700;
 }
 @font-face {
 	font-family: 'Noto Serif KR';
 	src: local(※),
-	url('/fonts/NotoSerifKR-Black.woff') format('woff'),
-	url('/fonts/NotoSerifKR-Black.otf') format('opentype');
+	url('fonts/NotoSerifKR-Black.woff') format('woff'),
+	url('fonts/NotoSerifKR-Black.otf') format('opentype');
   font-weight: 900;
 }
 
