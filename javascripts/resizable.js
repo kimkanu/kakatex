@@ -25,14 +25,20 @@ function makeResizableDiv(div) {
       if (currentResizer.classList.contains('bottom-right')) {
         const width = originalWidth + (e.pageX - originalMouseX) * 2;
         const height = originalHeight + (e.pageY - originalMouseY);
-        if (width > minimumSize) element.style.width = width + 'px';
-        if (height > minimumSize) element.style.height = height + 'px';
+        const amount = Math.max(width, height);
+        if (amount > minimumSize) {
+          element.style.width = amount + 'px';
+          element.style.height = amount + 'px';
+        }
       }
       else {
         const height = originalHeight + (e.pageY - originalMouseY) * 2;
         const width = originalWidth - (e.pageX - originalMouseX);
-        if (height > minimumSize) element.style.height = height + 'px';
-        if (width > minimumSize) element.style.width = width + 'px';
+        const amount = Math.max(width, height);
+        if (amount > minimumSize) {
+          element.style.width = amount + 'px';
+          element.style.height = amount + 'px';
+        }
       }
     }
     
