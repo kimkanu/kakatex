@@ -64,9 +64,9 @@ body.dark {
 
 .resizable {
   background: white;
-  width: calc(100vw - 4em);
+  width: 300px;
   max-width: calc(100vw - 16px);
-  height: 200px;
+  height: 300px;
   border-radius: 8px;
   position: relative;
 }
