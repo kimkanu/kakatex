@@ -17,7 +17,6 @@ editor.on('change', function(event) {
   var value = editor.getValue();
   try {
     contents.innerHTML = preprocess(value);
-    console.log(contents.innerHTML);
 
     var acc = '';
     var mode = 'text';
