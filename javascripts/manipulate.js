@@ -17,6 +17,7 @@ editor.on('change', function(event) {
   var value = editor.getValue();
   try {
     contents.innerHTML = preprocess(value);
+    console.log(contents.innerHTML);
 
     var acc = '';
     var mode = 'text';
@@ -81,15 +82,6 @@ editor.on('change', function(event) {
               acc = '\\';
               mode = 'inline';
               break;
-            case '\\':
-              var wrapped = '<br>';
-              contents.innerHTML =
-                contents.innerHTML.slice(0, i - 1) +
-                wrapped +
-                contents.innerHTML.slice(i + 1);
-              i += wrapped.length - 2;
-              acc = '';
-              break;
           }
           if (acc != '\\' && acc.startsWith('\\')) {
             acc = '\\';
@@ -152,7 +144,7 @@ editor.on('change', function(event) {
                   contents.innerHTML.slice(i + 1);
                 i += wrapped.length - 2;
                 acc = '';
-              } else {
+              } else if (definedMacro.includes(acc.trim().slice(1))) {
                 contents.innerHTML =
                   contents.innerHTML.slice(0, i - 1) +
                   '{' +
@@ -252,6 +244,9 @@ editor.on('change', function(event) {
       throwOnError: false,
       strict: 'ignore'
     });
+    contents.innerHTML = contents.innerHTML
+      .replace(new RegExp('\\n\\n+', 'g'), '<br>')
+      .replace(new RegExp('\\\\', 'g'), '<br>');
   } catch (error) {
     console.error(error);
   }
