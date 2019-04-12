@@ -1,47 +1,47 @@
 @font-face {
-  font-family: 'Noto Serif KR';
+  font-family: 'Noto Serif CJK KR';
   src: local(※),
   url('/kakatex/fonts/NotoSerifKR-ExtraLight.woff') format('woff'),
   url('/kakatex/fonts/NotoSerifKR-ExtraLight.otf') format('opentype');
   font-weight: 200;
 }
 @font-face {
-  font-family: 'Noto Serif KR';
+  font-family: 'Noto Serif CJK KR';
   src: local(※),
   url('/kakatex/fonts/NotoSerifKR-Light.woff') format('woff'),
   url('/kakatex/fonts/NotoSerifKR-Light.otf') format('opentype');
   font-weight: 300;
 }
 @font-face {
-  font-family: 'Noto Serif KR';
+  font-family: 'Noto Serif CJK KR';
   src: local(※),
   url('/kakatex/fonts/NotoSerifKR-Regular.woff') format('woff'),
   url('/kakatex/fonts/NotoSerifKR-Regular.otf') format('opentype');
   font-weight: 400;
 }
 @font-face {
-  font-family: 'Noto Serif KR';
+  font-family: 'Noto Serif CJK KR';
   src: local(※),
   url('/kakatex/fonts/NotoSerifKR-Medium.woff') format('woff'),
   url('/kakatex/fonts/NotoSerifKR-Medium.otf') format('opentype');
   font-weight: 500;
 }
 @font-face {
-  font-family: 'Noto Serif KR';
+  font-family: 'Noto Serif CJK KR';
   src: local(※),
   url('/kakatex/fonts/NotoSerifKR-SemiBold.woff') format('woff'),
   url('/kakatex/fonts/NotoSerifKR-SemiBold.otf') format('opentype');
   font-weight: 600;
 }
 @font-face {
-  font-family: 'Noto Serif KR';
+  font-family: 'Noto Serif CJK KR';
   src: local(※),
   url('/kakatex/fonts/NotoSerifKR-Bold.woff') format('woff'),
   url('/kakatex/fonts/NotoSerifKR-Bold.otf') format('opentype');
   font-weight: 700;
 }
 @font-face {
-  font-family: 'Noto Serif KR';
+  font-family: 'Noto Serif CJK KR';
   src: local(※),
   url('/kakatex/fonts/NotoSerifKR-Black.woff') format('woff'),
   url('/kakatex/fonts/NotoSerifKR-Black.otf') format('opentype');
@@ -54,7 +54,7 @@ body {
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  font-family: 'Noto Serif KR', serif;
+  font-family: 'Noto Serif CJK KR', serif;
   margin: 0;
 }
 

@@ -7,9 +7,10 @@
   crossorigin="anonymous"></script>
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/contrib/auto-render.min.js" integrity="sha384-kmZOZB5ObwgQnS/DuDg6TScgOiWWBiVt0plIRkZCmE6rDZGrEOQeHM5PcHi+nyqe"
   crossorigin="anonymous"></script>
-<script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
+<script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
 <script src="javascripts/ace/ace.js"></script>
 <script src="javascripts/dom-to-image.js"></script>
+<script src="javascripts/object-keys.js"></script>
 
 <div id="logo"><svg version="1.1" width="12em" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
   viewBox="0 0 700 197.7" style="enable-background:new 0 0 700 197.7;" xml:space="preserve">
@@ -66,160 +67,13 @@
 <div id="bottom-div">
   <a href="javascript:toggleDark();"><svg id="moon" height="4em" width='4em' xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 100 100" enable-background="new 0 0 100 100" xml:space="preserve"><path id="moon-path" fill="#000000" d="M75.075,64.591c-21.906,0-39.666-17.759-39.666-39.667c0-4.712,0.826-9.231,2.333-13.424  C22.442,17.003,11.5,31.638,11.5,48.833C11.5,70.741,29.259,88.5,51.167,88.5c17.195,0,31.83-10.942,37.333-26.242  C84.307,63.765,79.789,64.591,75.075,64.591z"></path></svg></a>
   <a id="kakao-link-btn" href="javascript:renderToImage();">
-    <img src="//developers.kakao.com/assets/img/about/logos/kakaolink/kakaolink_btn_medium.png">
+    <img src="https://developers.kakao.com/assets/img/about/logos/kakaolink/kakaolink_btn_medium.png">
     <div id="loading" class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
   </a>
 </div>
 
 <script src="javascripts/resizable.js"></script>
 
-<script>
-  function addLineBreaks(paragraph) {
-    const find = (input, re, replacer) => {
-      let match = null;
-      const array = [];
+<script src="javascripts/manipulate.js"></script>
 
-      while ((match = re.exec(input)) !== null) {
-        array.push([match.index, match[0], replacer(match)]);
-      }
-
-      return array;
-    }
-
-    const texts = (paragraph, matcher, replacer) => find(paragraph, RegExp(`(\\\\${matcher}\\{((([^\\}\\$]|\\\\\\$)|\\\\\\})*)((?<!\\\\)\\}))|(\\\\${matcher}\\s*([^\\s\\$\\\\\\{]))|(\\\\${matcher}\\s*((\\\\\\$)|(\\\\\\~)|(\\\\textbackslash)))`, 'gim'), (match) => replacer(match[2] || match[6] || match[8] || ''));
-
-    const pars = find(paragraph, /\n\n+/gim, () => '</p><p>');
-    const lineBreaks = find(paragraph, /\\\\/gim, () => '<br>');
-    const textbfs = texts(paragraph, 'textbf', (str) => `<b>${str}</b>`);
-    const textits = texts(paragraph, 'textit', (str) => `<i>${str}</i>`);
-    const sections = texts(paragraph, 'section', (str) => `<h2>${str}</h2>`);
-
-    const findFormulae = (input) => {
-      let match = null;
-      const re = /(\\\((.|\n)*?\\\))|(\\\[(.|\n)*?\\\])|(\$(.|\n)*?\$)/gim;
-      const array = [];
-
-      while ((match = re.exec(input)) !== null) {
-        array.push([match.index, match[0].length + match.index]);
-      }
-
-      return array;
-    };
-
-    const formulae = findFormulae(paragraph);
-    const concated = pars.concat(lineBreaks, textbfs, textits, sections);
-    concated.sort((a, b) => (a[0] < b[0] ? -1 : 1));
-    const validPars = concated.filter(([pos, match, sub]) =>
-      !(formulae.find(([start, end]) => (pos >= start && pos < end))));
-
-    let modifiedParagraph = paragraph;
-    let shift = 0;
-    validPars.forEach(([pos, match, sub], i) => {
-      modifiedParagraph = `${modifiedParagraph.slice(0, pos + shift)}${sub}${modifiedParagraph.slice(pos + shift + match.length)}`;
-      shift += sub.length - match.length;
-    });
-
-    return `<p>${modifiedParagraph}</p>`;
-  }
-</script>
-
-<script>
-  const editorDiv = document.querySelector('#editor');
-  const editor = ace.edit('editor');
-  editor.setTheme('ace/theme/tomorrow');
-  editor.session.setMode('ace/mode/latex');
-  editor.setFontSize(16);
-  editor.container.style.lineHeight = 1.5;
-  editor.renderer.updateFontSize();
-  editor.setOptions({
-    wrap: true,
-  });
-  const contents = document.querySelector('#contents');
-  editor.on('change', function (e) {
-    const value = editor.getValue();
-    try {
-      contents.innerHTML = addLineBreaks(value.replace('<', '&lt;').replace('>', '&gt;'));
-      renderMathInElement(contents, {
-        delimiters: [
-          { left: '$$', right: '$$', display: true },
-          { left: '$', right: '$', display: false },
-          { left: '\\(', right: '\\)', display: false },
-          { left: '\\[', right: '\\]', display: true },
-        ],
-        throwOnError: false,
-        strict: 'ignore'
-      });
-      contents.innerHTML = contents.innerHTML.replace(/\\\$/g, '$');
-    } catch (e) {
-      console.error(e);
-    }
-  });
-</script>
-
-<script>
-  let executing = false;
-
-  async function renderToImage() {
-    if (executing) return;
-
-    executing = true;
-    document.getElementById('kakao-link-btn').classList.add('exec');
-    const resizers = document.querySelector('.resizers');
-    const base64Image = (await domtoimage.toPng(resizers)).slice(22);
-
-    const formData = new FormData();
-    formData.append('image', base64Image);
-    const xhr = new XMLHttpRequest();
-    xhr.open('POST', 'https://api.imgur.com/3/image.json');
-    xhr.onload = () => {
-      const { link } = JSON.parse(xhr.responseText).data;
-      sendLink(link);
-    }
-    xhr.setRequestHeader('Authorization', 'Client-ID 7e06dc2fe0a78bb');
-    xhr.send(formData);
-  }
-
-  //<![CDATA[
-  // // 사용할 앱의 JavaScript 키를 설정해 주세요.
-  Kakao.init('034571a3977ef37e7fe58a5ac340e38c');
-  // // 카카오링크 버튼을 생성합니다. 처음 한번만 호출하면 됩니다.
-  function sendLink(imageUrl) {
-    Kakao.Link.sendDefault({
-      objectType: 'feed',
-      content: {
-        title: '',
-        description: '',
-        imageUrl,
-        link: {
-          mobileWebUrl: imageUrl,
-          webUrl: imageUrl
-        }
-      },
-      buttons: [
-        {
-          title: '자세히 보기',
-          link: {
-            mobileWebUrl: imageUrl,
-            webUrl: imageUrl
-          }
-        }
-      ]
-    });
-    executing = false;
-    document.getElementById('kakao-link-btn').classList.remove('exec');
-  }
-  //]]>
-</script>
-
-<script>
-function toggleDark() {
-  if (document.body.classList.contains('dark')) {
-    document.body.classList.remove('dark');
-    editor.setTheme('ace/theme/tomorrow');
-  }
-  else {
-    document.body.classList.add('dark');
-    editor.setTheme('ace/theme/tomorrow_night_eighties');
-  }
-}
-</script>
+<script src="javascripts/main.js"></script>
