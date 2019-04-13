@@ -9,7 +9,6 @@ editor.renderer.updateFontSize();
 editor.setOptions({
   enableBasicAutocompletion: true,
   enableLiveAutocompletion: true,
-  enableSnippets: true,
   wrap: true
 });
 
