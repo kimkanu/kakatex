@@ -1,19 +1,4 @@
-<!doctype html>
-
-<link rel="stylesheet" href="styles/index.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y"
-  crossorigin="anonymous">
-<script defer src="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/katex.min.js" integrity="sha384-K3vbOmF2BtaVai+Qk37uypf7VrgBubhQreNQe9aGsz9lB63dIFiQVlJbr92dw2Lx"
-  crossorigin="anonymous"></script>
-<script defer src="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/contrib/auto-render.min.js" integrity="sha384-kmZOZB5ObwgQnS/DuDg6TScgOiWWBiVt0plIRkZCmE6rDZGrEOQeHM5PcHi+nyqe"
-  crossorigin="anonymous"></script>
-<script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
-<script src="javascripts/ace/ace.js"></script>
-<script src="javascripts/ace/ext-language_tools.js"></script>
-<script src="javascripts/dom-to-image.js"></script>
-<script src="javascripts/object-keys.js"></script>
-
-<div id="logo"><svg version="1.1" width="12em" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+<svg version="1.1" width="12em" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
   viewBox="0 0 700 197.7" style="enable-background:new 0 0 700 197.7;" xml:space="preserve">
 <style type="text/css">
   .st0 {
@@ -55,25 +40,4 @@
      c5.6,0,16.4,0,21.7,0.4v-5.2c-13.9,0-16.1-1.1-20.4-7.2"/>
  </g>
 </g>
-</svg></div>
-<div id="editor"></div>
-<div class="resizable">
-  <div class="resizers">
-    <div id="contents"></div>
-    <div class="resizer bottom-left"></div>
-    <div class="resizer bottom-right"></div>
-  </div>
-</div>
-<div id="bottom-div">
-  <a href="javascript:toggleDark();"><svg id="moon" height="4em" width='4em' xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 100 100" enable-background="new 0 0 100 100" xml:space="preserve"><path id="moon-path" fill="#000000" d="M75.075,64.591c-21.906,0-39.666-17.759-39.666-39.667c0-4.712,0.826-9.231,2.333-13.424  C22.442,17.003,11.5,31.638,11.5,48.833C11.5,70.741,29.259,88.5,51.167,88.5c17.195,0,31.83-10.942,37.333-26.242  C84.307,63.765,79.789,64.591,75.075,64.591z"></path></svg></a>
-  <a id="kakao-link-btn" href="javascript:renderToImage();">
-    <img src="https://developers.kakao.com/assets/img/about/logos/kakaolink/kakaolink_btn_medium.png">
-    <div id="loading" class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
-  </a>
-</div>
-
-<script src="javascripts/resizable.js"></script>
-
-<script src="javascripts/define-text-styles.js"></script>
-<script src="javascripts/manipulate.js"></script>
-<script src="javascripts/main.js"></script>
+</svg>

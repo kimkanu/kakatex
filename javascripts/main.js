@@ -4,9 +4,11 @@ async function renderToImage() {
   if (executing) return;
 
   executing = true;
+  document.getElementById('contents').style.overflowY = 'hidden';
   document.getElementById('kakao-link-btn').classList.add('exec');
   var resizers = document.querySelector('.resizers');
   var base64Image = (await domtoimage.toPng(resizers)).slice(22);
+  document.getElementById('contents').style.overflowY = 'auto';
 
   var formData = new FormData();
   formData.append('image', base64Image);
