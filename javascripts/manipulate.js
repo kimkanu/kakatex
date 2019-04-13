@@ -449,6 +449,33 @@ function postprocess(string) {
         ),
         '<ul>'
       )
+      .replace(
+        new RegExp(
+          wrapSpecialText('START_MACRO_end') +
+            'itemize' +
+            wrapSpecialText('END_MACRO_end'),
+          'g'
+        ),
+        '<ul>'
+      )
+      .replace(
+        new RegExp(
+          wrapSpecialText('START_MACRO_begin') +
+            'align' +
+            wrapSpecialText('END_MACRO_begin'),
+          'g'
+        ),
+        '\\[ \\begin{aligned}'
+      )
+      .replace(
+        new RegExp(
+          wrapSpecialText('START_MACRO_end') +
+            'align' +
+            wrapSpecialText('END_MACRO_end'),
+          'g'
+        ),
+        '\\end{aligned} \\]'
+      )
       .replace(new RegExp(wrapSpecialText('MACRO_item'), 'g'), '<li>')
   );
   var r = recoverSpecialCharacters(s);

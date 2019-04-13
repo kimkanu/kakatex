@@ -128,13 +128,16 @@ body.dark code {
 #contents {
   position: relative;
   width: 100%;
-  max-height: calc(100% - 2.4em);
-  padding: 1.2em 1.8em;
+  max-height: calc(100% - 3.6em);
+  padding: 1.8em 1.8em;
   overflow-y: auto;
   transition: color cubic-bezier(0.215, 0.610, 0.355, 1),
   background-color cubic-bezier(0.215, 0.610, 0.355, 1);
   border-radius: 8px;
   line-height: 1.6;
+}
+#contents > *:first-child {
+  margin-top: 0;
 }
 
 #contents h1 {
