@@ -134,7 +134,7 @@ body.dark code {
 #file-selector, .select2-container {
   font-family: monospace;
 }
-#file-selector > select {
+#file-selector > select, .select2-container {
   min-width: 15em;
 }
 #file-selector .selectize-dropdown-content .create {
