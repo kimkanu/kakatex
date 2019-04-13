@@ -337,7 +337,6 @@ var render = function(event) {
         }
       }
     }
-    console.log(contents.innerHTML);
     contents.innerHTML = postprocess(contents.innerHTML);
     renderMathInElement(contents, {
       delimiters: [
