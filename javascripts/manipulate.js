@@ -64,6 +64,7 @@ var render = function(event) {
                 wrapped +
                 contents.innerHTML.slice(i + 1);
               i += wrapped.length - 2;
+              acc = '';
               break;
             case '\\':
               var wrapped = wrapSpecialCharacter('$');
@@ -141,6 +142,32 @@ var render = function(event) {
                 i += wrapped.length - 1;
                 acc = '';
               }
+          }
+        } else if (char == '[') {
+          switch (acc) {
+            case '\\':
+              mode = 'display';
+              var wrapped = wrapSpecialText('START_DISPLAY');
+              contents.innerHTML =
+                contents.innerHTML.slice(0, i - 1) +
+                wrapped +
+                contents.innerHTML.slice(i + 1);
+              i += wrapped.length - 2;
+              acc = '';
+              break;
+          }
+        } else if (char == '(') {
+          switch (acc) {
+            case '\\':
+              mode = 'inline';
+              var wrapped = wrapSpecialText('START_INLINE');
+              contents.innerHTML =
+                contents.innerHTML.slice(0, i - 1) +
+                wrapped +
+                contents.innerHTML.slice(i + 1);
+              i += wrapped.length - 2;
+              acc = '';
+              break;
           }
         } else {
           if (definedMacrosWithNoParams.includes(acc.trim().slice(1))) {
@@ -221,6 +248,19 @@ var render = function(event) {
             default:
               acc = '\\';
           }
+        } else if (char == ')') {
+          switch (acc) {
+            case '\\':
+              mode = 'text';
+              var wrapped = wrapSpecialText('END_INLINE');
+              contents.innerHTML =
+                contents.innerHTML.slice(0, i - 1) +
+                wrapped +
+                contents.innerHTML.slice(i + 1);
+              i += wrapped.length - 2;
+              acc = '';
+              break;
+          }
         } else {
           acc = '';
         }
@@ -254,6 +294,19 @@ var render = function(event) {
             default:
               acc = '\\';
           }
+        } else if (char == ']') {
+          switch (acc) {
+            case '\\':
+              mode = 'text';
+              var wrapped = wrapSpecialText('END_DISPLAY');
+              contents.innerHTML =
+                contents.innerHTML.slice(0, i - 1) +
+                wrapped +
+                contents.innerHTML.slice(i + 1);
+              i += wrapped.length - 2;
+              acc = '';
+              break;
+          }
         } else {
           acc = '';
         }
@@ -284,7 +337,7 @@ var render = function(event) {
         }
       }
     }
-
+    console.log(contents.innerHTML);
     contents.innerHTML = postprocess(contents.innerHTML);
     renderMathInElement(contents, {
       delimiters: [
