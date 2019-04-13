@@ -58,3 +58,7 @@ function toggleDark() {
     editor.setTheme('ace/theme/tomorrow_night_eighties');
   }
 }
+
+setTimeout(function() {
+  $('body').css('display', 'flex');
+}, 100);

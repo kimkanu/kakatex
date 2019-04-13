@@ -48,15 +48,14 @@
   url('/kakatex/fonts/NotoSerifKR-Black.otf') format('opentype');
   font-weight: 900;
 }
-
 body {
   background: #e6e6e6;
-  display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
   font-family: 'Noto Serif', 'Noto Serif CJK KR', serif;
   margin: 0;
+  display: none;
 }
 .slanted {
   font-family: 'Noto Serif CJK KR', serif!important;
@@ -129,6 +128,9 @@ body.dark code {
   width: calc(100% - 4em);
   margin: 1.4em 2em 0;
 }
+.dark #file-selector {
+  color: white;
+}
 #file-selector, .select2-container {
   font-family: monospace;
 }
@@ -144,6 +146,28 @@ body.dark code {
 .select2-container--default .select2-results__option--highlighted[aria-selected] {
   color: black!important;
   background-color: #dfdfdf!important;
+}
+.dark .select2-container--default .select2-selection--single,
+.dark .select2-container--default .select2-selection--single .select2-selection__rendered {
+  background-color: #272727;
+  border: 1px solid #666;
+  color: white;
+}
+.dark .select2-dropdown {
+  background-color: #272727!important;
+  color: white;
+}
+.dark .select2-container--default .select2-search--dropdown .select2-search__field {
+  color: white;
+  background-color: #393939!important;
+}
+.dark .select2-container--default .select2-results__option--highlighted[aria-selected] {
+  color: white!important;
+  background-color: #4d4d50!important;
+}
+.dark .select2-container--default .select2-results__option[aria-selected=true] {
+  color: white;
+  background-color: #393939!important;
 }
 
 #contents {
