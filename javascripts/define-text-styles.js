@@ -67,5 +67,14 @@ var textStyles = {
   },
   tiny: function(s) {
     return '<span style="font-size: .5rem">' + s + '</span>';
+  },
+  randomsize: function(s) {
+    return (
+      '<span style="font-size: ' +
+      (Math.random() * 2 + 0.5).toString() +
+      'rem">' +
+      s +
+      '</span>'
+    );
   }
 };
