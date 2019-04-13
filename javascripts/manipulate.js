@@ -18,7 +18,8 @@ var logoSvg =
 
 var contents = document.querySelector('#contents');
 
-var definedMacros = Object.keys(textStyles);
+var definedMacros = Object.keys(textStyles).concat(['begin', 'end']);
+var definedMacrosWithNoParams = ['item'];
 var nestedBraceStack = [];
 
 var render = function(event) {
@@ -143,7 +144,15 @@ var render = function(event) {
               }
           }
         } else {
-          if (acc.trim() == '\\verb' && char == '|') {
+          if (definedMacrosWithNoParams.includes(acc.trim().slice(1))) {
+            var wrapped = wrapSpecialText('MACRO_' + acc.trim().slice(1));
+            contents.innerHTML =
+              contents.innerHTML.slice(0, i - acc.length) +
+              wrapped +
+              contents.innerHTML.slice(i + 1);
+            i += wrapped.length - acc.length - 1;
+            acc = '';
+          } else if (acc.trim() == '\\verb' && char == '|') {
             var wrapped = wrapSpecialText('START_VERB');
             contents.innerHTML =
               contents.innerHTML.slice(0, i - 5) +
@@ -343,13 +352,6 @@ function recoverSpecialCharacters(s) {
 
 function preprocess(string) {
   return string
-    .replace(new RegExp('\\\\begin{align}', 'g'), '\\[ \\begin{aligned}')
-    .replace(new RegExp('\\\\end{align}', 'g'), '\\end{aligned} \\]')
-    .replace(new RegExp('\\\\begin{itemize}', 'g'), '<ul>')
-    .replace(new RegExp('\\\\end{itemize}', 'g'), '</ul>')
-    .replace(new RegExp('\\\\begin{enumerate}', 'g'), '<ol>')
-    .replace(new RegExp('\\\\end{enumerate}', 'g'), '</ol>')
-    .replace(new RegExp('\\\\item', 'g'), '<li>')
     .replace(new RegExp('\\\\KakaTeX', 'g'), wrapSpecialText('MACRO_KakaTeX'))
     .replace(new RegExp('\\\\KaKaTeX', 'g'), wrapSpecialText('MACRO_KakaTeX'));
 }
@@ -405,7 +407,11 @@ function processmacros(string) {
   var decorator = function(s) {
     return s;
   };
-  if (definedMacros.includes(currentMacro)) {
+  if (
+    definedMacros.includes(currentMacro) &&
+    currentMacro !== 'begin' &&
+    currentMacro !== 'end'
+  ) {
     decorator = textStyles[currentMacro];
   }
   return (
@@ -414,7 +420,37 @@ function processmacros(string) {
 }
 
 function postprocess(string) {
-  var s = processmacros(string);
+  var s = processmacros(
+    string
+      .replace(
+        new RegExp(
+          wrapSpecialText('START_MACRO_begin') +
+            'enumerate' +
+            wrapSpecialText('END_MACRO_begin'),
+          'g'
+        ),
+        '<ol>'
+      )
+      .replace(
+        new RegExp(
+          wrapSpecialText('START_MACRO_end') +
+            'enumerate' +
+            wrapSpecialText('END_MACRO_end'),
+          'g'
+        ),
+        '</ol>'
+      )
+      .replace(
+        new RegExp(
+          wrapSpecialText('START_MACRO_begin') +
+            'itemize' +
+            wrapSpecialText('END_MACRO_begin'),
+          'g'
+        ),
+        '<ul>'
+      )
+      .replace(new RegExp(wrapSpecialText('MACRO_item'), 'g'), '<li>')
+  );
   var r = recoverSpecialCharacters(s);
   return r
     .replace(
@@ -468,6 +504,7 @@ function postprocess(string) {
     .replace(new RegExp(wrapSpecialText('START_DISPLAY'), 'g'), '$$')
     .replace(new RegExp(wrapSpecialText('END_DISPLAY'), 'g'), '$$')
     .replace(new RegExp(wrapSpecialText('START_VERB'), 'g'), '\\verb|')
+    .replace(new RegExp(wrapSpecialText('END_VERB'), 'g'), '|')
     .replace(new RegExp(wrapSpecialText('END_VERB'), 'g'), '|')
     .replace(
       new RegExp(wrapSpecialText('MACRO_KakaTeX'), 'g'),

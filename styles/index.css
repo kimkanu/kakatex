@@ -69,6 +69,9 @@ body {
 .sans {
   font-family: 'Noto Sans', 'Noto Sans CJK KR', sans-serif!important;
 }
+.centerline {
+  text-align: center;
+}
 code {
   background: #e7e7e8;
   border-radius: .4em;
