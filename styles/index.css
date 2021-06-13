@@ -1,72 +1,25 @@
 @import url('https://fonts.googleapis.com/css?family=Noto+Serif:400,400i,700,700i&subset=latin-ext');
-@font-face {
-  font-family: 'Noto Serif CJK KR';
-  src: local(※),
-  url('/fonts/NotoSerifKR-ExtraLight.woff') format('woff'),
-  url('/fonts/NotoSerifKR-ExtraLight.otf') format('opentype');
-  font-weight: 200;
-}
-@font-face {
-  font-family: 'Noto Serif CJK KR';
-  src: local(※),
-  url('/fonts/NotoSerifKR-Light.woff') format('woff'),
-  url('/fonts/NotoSerifKR-Light.otf') format('opentype');
-  font-weight: 300;
-}
-@font-face {
-  font-family: 'Noto Serif CJK KR';
-  src: local(※),
-  url('/fonts/NotoSerifKR-Regular.woff') format('woff'),
-  url('/fonts/NotoSerifKR-Regular.otf') format('opentype');
-  font-weight: 400;
-}
-@font-face {
-  font-family: 'Noto Serif CJK KR';
-  src: local(※),
-  url('/fonts/NotoSerifKR-Medium.woff') format('woff'),
-  url('/fonts/NotoSerifKR-Medium.otf') format('opentype');
-  font-weight: 500;
-}
-@font-face {
-  font-family: 'Noto Serif CJK KR';
-  src: local(※),
-  url('/fonts/NotoSerifKR-SemiBold.woff') format('woff'),
-  url('/fonts/NotoSerifKR-SemiBold.otf') format('opentype');
-  font-weight: 600;
-}
-@font-face {
-  font-family: 'Noto Serif CJK KR';
-  src: local(※),
-  url('/fonts/NotoSerifKR-Bold.woff') format('woff'),
-  url('/fonts/NotoSerifKR-Bold.otf') format('opentype');
-  font-weight: 700;
-}
-@font-face {
-  font-family: 'Noto Serif CJK KR';
-  src: local(※),
-  url('/fonts/NotoSerifKR-Black.woff') format('woff'),
-  url('/fonts/NotoSerifKR-Black.otf') format('opentype');
-  font-weight: 900;
-}
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap');
 body {
   background: #e6e6e6;
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  font-family: 'Noto Serif', 'Noto Serif CJK KR', serif;
+  font-family: 'Noto Serif', 'Noto Serif KR', serif;
   margin: 0;
   display: none;
 }
 .slanted {
-  font-family: 'Noto Serif CJK KR', serif!important;
+  font-family: 'Noto Serif KR', serif!important;
   font-style: oblique;
   margin-right: .15em;
 }
 .serif {
-  font-family: 'Noto Serif', 'Noto Serif CJK KR', serif!important;
+  font-family: 'Noto Serif', 'Noto Serif KR', serif!important;
 }
 .sans {
-  font-family: 'Noto Sans', 'Noto Sans CJK KR', sans-serif!important;
+  font-family: 'Noto Sans', 'Noto Sans KR', sans-serif!important;
 }
 .centerline {
   text-align: center;
